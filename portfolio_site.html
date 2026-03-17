@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Hiragino Sans', 'Helvetica Neue', sans-serif;
+      background: #fafafa;
+      color: #333;
+    }
+
+    /* ヘッダー */
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      color: #333;
+    }
+
+    header p {
+      font-size: 12px;
+      color: #999;
+      margin-top: 8px;
+      letter-spacing: 2px;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: #ccc;
+      margin: 16px auto;
+    }
+
+    /* サムネイルグリッド */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .thumb {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      background: #eee;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .thumb:hover img {
+      transform: scale(1.05);
+    }
+
+    /* 作品番号バッジ */
+    .thumb .badge {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+
+    /* ===== 詳細ページ ===== */
+    .detail-page {
+      display: none;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0px;
+      padding: 12px;
+    }
+
+    .detail-page.active {
+      display: block;
+    }
+
+    /* 戻るボタン */
+    .back-btn {
+      display: inline-block;
+      font-size: 12px;
+      color: #999;
+      cursor: pointer;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .back-btn::before {
+      content: '← ';
+    }
+
+    /* Before / After */
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 20px;
+    }
+
+    .before-after .item {
+      position: relative;
+    }
+
+    .before-after .item img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+
+    .before-after .label {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: #999;
+      margin-bottom: 6px;
+    }
+
+    /* やったこと */
+    .description {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 20px;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .description h3 {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #999;
+      margin-bottom: 12px;
+    }
+
+    .description ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .description ul li::before {
+      content: '・';
+      color: #ccc;
+    }
+
+    /* トップページ / 詳細ページ切り替え */
+    #top-page {
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ===== トップページ ===== -->
+  <div id="top-page">
+    <header>
+      <h1>PORTFOLIO</h1>
+      <div class="divider"></div>
+      <p>Photo Retouching Works</p>
+    </header>
+
+    <div class="grid">
+
+      <!-- 作品1 -->
+      <div class="thumb" onclick="showDetail(1)">
+        <!-- afterの画像をサムネイルに使う -->
+        <img src="after1.jpg" alt="作品1">
+        <span class="badge">01</span>
+      </div>
+
+      <!-- 作品2 -->
+      <div class="thumb" onclick="showDetail(2)">
+        <img src="after2.jpg" alt="作品2">
+        <span class="badge">02</span>
+      </div>
+
+      <!-- 作品3 -->
+      <div class="thumb" onclick="showDetail(3)">
+        <img src="after3.jpg" alt="作品3">
+        <span class="badge">03</span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ===== 詳細ページ1 ===== -->
+  <div class="detail-page" id="detail-1">
+    <span class="back-btn" onclick="showTop()">back</span>
+
+    <div class="before-after">
+      <div class="item">
+        <div class="label">BEFORE</div>
+        <img src="before1.jpg" alt="before">
+      </div>
+      <div class="item">
+        <div class="label">AFTER</div>
+        <img src="after1.jpg" alt="after">
+      </div>
+    </div>
+
+    <div class="description">
+      <h3>WORKS</h3>
+      <ul>
+        <li>肌補正</li>
+        <li>肌の明るさ調整</li>
+        <li>へその合成</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- ===== 詳細ページ2 ===== -->
+  <div class="detail-page" id="detail-2">
+    <span class="back-btn" onclick="showTop()">back</span>
+
+    <div class="before-after">
+      <div class="item">
+        <div class="label">BEFORE</div>
+        <img src="before2.jpg" alt="before">
+      </div>
+      <div class="item">
+        <div class="label">AFTER</div>
+        <img src="after2.jpg" alt="after">
+      </div>
+    </div>
+
+    <div class="description">
+      <h3>WORKS</h3>
+      <ul>
+        <li>顔補正・肌補正</li>
+        <li>背景切り抜き</li>
+        <li>ウィッグのズレによる不要物を除去</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- ===== 詳細ページ3 ===== -->
+  <div class="detail-page" id="detail-3">
+    <span class="back-btn" onclick="showTop()">back</span>
+
+    <div class="before-after">
+      <div class="item">
+        <div class="label">BEFORE</div>
+        <img src="before3.jpg" alt="before">
+      </div>
+      <div class="item">
+        <div class="label">AFTER</div>
+        <img src="after3.jpg" alt="after">
+      </div>
+    </div>
+
+    <div class="description">
+      <h3>WORKS</h3>
+      <ul>
+        <li>顔補正</li>
+        <li>肌補正</li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  <script>
+    function showDetail(num) {
+      document.getElementById('top-page').style.display = 'none';
+      document.querySelectorAll('.detail-page').forEach(p => p.classList.remove('active'));
+      document.getElementById('detail-' + num).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function showTop() {
+      document.getElementById('top-page').style.display = 'block';
+      document.querySelectorAll('.detail-page').forEach(p => p.classList.remove('active'));
+      window.scrollTo(0, 0);
+    }
+  </script>
+
+</body>
+</html>
